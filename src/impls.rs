@@ -32,7 +32,6 @@ macro_rules! impl_reflect_atom_clone {
         impl Typed for $ty {
             fn create_type_info() -> TypeInfo {
                 TypeInfo {
-                    path: Self::type_path(),
                     id: TypeId::of::<Self>(),
                 }
             }
@@ -82,6 +81,11 @@ macro_rules! impl_reflect_atom_clone {
 }
 
 impl_reflect_atom_clone! {
+    String as "::alloc::string::String";
+    bool as "bool";
+    f32 as "f32";
+    f64 as "f64";
+    char as "char";
     u8 as "u8";
     u16 as "u16";
     u32 as "u32";
@@ -145,7 +149,6 @@ impl TypePath for () {
 impl Typed for () {
     fn create_type_info() -> TypeInfo {
         TypeInfo {
-            path: Self::type_path(),
             id: TypeId::of::<Self>(),
         }
     }

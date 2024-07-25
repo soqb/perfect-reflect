@@ -165,6 +165,14 @@ pub struct VariantId {
     pub name: Cow<'static, str>,
 }
 
+impl VariantId {
+    pub const fn new_static(name: &'static str) -> Self {
+        Self {
+            name: Cow::Borrowed(name),
+        }
+    }
+}
+
 impl From<&'static str> for VariantId {
     fn from(value: &'static str) -> Self {
         Self { name: value.into() }

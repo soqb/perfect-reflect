@@ -141,14 +141,19 @@ impl<T: Reflect> FromValue for Foo<T> {
 
 impl<T: TypePath> TypePath for Foo<T> {
     fn type_path() -> &'static str {
-        "examples::implementing_traits::Foo"
+        let reg = registry::global_registry();
+        reg.register_path::<Foo<T>>()
+    }
+
+    fn create_type_path() -> Cow<'static, str> {
+        let path = format!(concat!(module_path!(), "::Foo::<{}>"), T::type_path());
+        Cow::Owned(path)
     }
 }
 
 impl<T: Reflect> Typed for Foo<T> {
     fn create_type_info() -> TypeInfo {
         TypeInfo {
-            path: Self::type_path(),
             id: TypeId::of::<T>(),
         }
     }
@@ -296,5 +301,11 @@ fn main() {
     assert_eq!(
         <Foo<()>>::from_value_ref(&value).unwrap_err().to_string(),
         "field Baz.1: expected a value of type `usize`, but found type `i64`",
+    );
+
+    assert_eq!(<Foo<()>>::type_path(), "implementing_traits::Foo::<()>");
+    assert_eq!(
+        registry::global_registry().path(TypeId::of::<Foo<()>>()),
+        Some("implementing_traits::Foo::<()>")
     );
 }

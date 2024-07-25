@@ -4,6 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+bevy_ptr = "0.14.0"
+bevy_utils = "0.14.0"
 boxcar = "0.2.5"
 downcast-rs = "1.2.1"
 papaya = "0.1.2"
