@@ -1,6 +1,6 @@
 use std::{any::TypeId, borrow::Cow, iter};
 
-use perfect_reflect_2::*;
+use perfect_reflect::*;
 use registry::{GetTypeRegistration, Registration};
 
 #[derive(PartialEq, Debug)]

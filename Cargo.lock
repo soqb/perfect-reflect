@@ -149,7 +149,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "perfect-reflect-2"
+name = "perfect-reflect"
 version = "0.1.0"
 dependencies = [
  "bevy_ptr",
