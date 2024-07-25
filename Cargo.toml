@@ -1,0 +1,11 @@
+[package]
+name = "perfect-reflect-2"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+boxcar = "0.2.5"
+downcast-rs = "1.2.1"
+papaya = "0.1.2"
+ref-cast = "1.0.23"
+thiserror = "1.0.63"
